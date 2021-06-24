@@ -3,12 +3,12 @@ How to run:
 
 1. Build the image
 
-`docker build -t backups .`
+`docker build -t backups . --build-arg HOUR_OF_DAY=23`
 
 2. Run the image
 
 ```
-docker run -idt backups --env MYSQL_USERNAME=<> --env MYSQL_PASSWORD=<> --env SERVER=<> --env DB_NAME=<> --env BUCKET=<abc.bucket.com> --env AWS_ACCESS_KEY_ID=<> --env AWS_SECRET_ACCESS_KEY=<> --env HOUR_OF_DAY=23
+docker run -idt backups --env MYSQL_USERNAME=<> --env MYSQL_PASSWORD=<> --env SERVER=<> --env DB_NAME=<> --env BUCKET=<abc.bucket.com> --env AWS_ACCESS_KEY_ID=<> --env AWS_SECRET_ACCESS_KEY=<>
 ```
 
 3. Connect to the network of your DB container (Only when DB is in another container)
@@ -50,4 +50,4 @@ Add the below section to your docker compose:
     restart: always
 ```
 
-Using Dockerhub? Replace `build:` with `image:` and specify Dockerhub url (upcoming).
+Using [Dockerhub](https://hub.docker.com/r/fundwave/s3-mysql-backup-cron)? Replace `build:` with `image: fundwave/s3-mysql-backup-cron:latest`, but you won't be able to change `HOUR_OF_DAY` as it's a build arg.
